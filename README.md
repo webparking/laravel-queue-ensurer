@@ -5,13 +5,13 @@
 <p align="center">
     <a href="https://travis-ci.org/webparking/laravel-queue-ensurer">
         <img src="https://travis-ci.org/webparking/laravel-queue-ensurer.svg?branch=master" alt="Build Status">
-    </a> 
+    </a>
     <a href="https://scrutinizer-ci.com/g/webparking/laravel-queue-ensurer/?branch=master">
         <img src="https://scrutinizer-ci.com/g/webparking/laravel-queue-ensurer/badges/quality-score.png?b=master" alt="Quality score">
-    </a> 
+    </a>
     <a href="https://scrutinizer-ci.com/g/webparking/laravel-queue-ensurer/?branch=master">
         <img src="https://scrutinizer-ci.com/g/webparking/laravel-queue-ensurer/badges/coverage.png?b=master" alt="Code coverage">
-    </a> 
+    </a>
 </p>
 
 This package provides a command (`queue:ensure-processes`) to allow running the Laravel queue worker (`queue:work`) from the Laravel schedule. This enables a cronjob to ensure that configured queue workers are running. It eliminates the need for a process manager like [supervisord](http://supervisord.org/), which is not available in all production environments (like when working with DirectAdmin or most other server control panels).
@@ -65,15 +65,14 @@ When developing, you can run `composer test` to execute all code quality checks 
 ## Future features
 These are features we may add. We don't have a specific need for them now, but we acknowledge their usefulness and we will add them when we have some down time. Should you or your project require one or more of these future features earlier, please submit a PR or create an issue.
 
-* Add compatibility with more Laravel versions (only supporting 5.5 now)
+* Add compatibility with more Laravel versions (only supporting 5.5 and 5.6 now)
 * Configurable options for `queue:work`.
 * Testing compatibility with Lumen
-* Adding PHP 7.3 compatibility
 
 ## Licence and Postcardware
 
 This software is open source and licensed under the [MIT license](LICENSE.md).
 
-If you use this software in your daily development we would appreciate to receive a postcard of your hometown. 
+If you use this software in your daily development we would appreciate to receive a postcard of your hometown.
 
 Please send it to: Webparking BV, Cypresbaan 31a, 2908 LT Capelle aan den IJssel, The Netherlands
