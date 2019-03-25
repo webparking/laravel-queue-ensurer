@@ -157,7 +157,7 @@ class EnsureProcessesCommandTest extends TestCase
 
     private function startProcess(): Process
     {
-        $process = new Process('sleep 10');
+        $process = new Process(['sleep', '10']);
         $process->start();
 
         return $process;
