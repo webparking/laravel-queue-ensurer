@@ -1,0 +1,30 @@
+language: php
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+matrix:
+  fast_finish: true
+  include:
+    - php: 7.1
+      env: LARAVEL='5.5.*' TESTBENCH='3.5.*' COMPOSER_FLAGS='--prefer-lowest'
+    - php: 7.1
+      env: LARAVEL='5.5.*' TESTBENCH='3.5.*'
+    - php: 7.2
+      env: LARAVEL='5.5.*' TESTBENCH='3.5.*'
+    - php: 7.3
+      env: LARAVEL='5.5.*' TESTBENCH='3.5.*'
+
+before_install:
+  - travis_retry composer self-update
+  - COMPOSER_MEMORY_LIMIT=-1 travis_retry composer require --no-update --no-interaction "illuminate/support:${LARAVEL}" "illuminate/console:${LARAVEL}" "orchestra/testbench:${TESTBENCH}"
+
+install:
+  - COMPOSER_MEMORY_LIMIT=-1 travis_retry composer update --no-interaction --no-plugins --no-suggest --prefer-source ${COMPOSER_FLAGS}
+
+script:
+  - composer test
+
+notifications:
+  email: false
