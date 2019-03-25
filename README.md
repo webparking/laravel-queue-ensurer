@@ -65,7 +65,6 @@ When developing, you can run `composer test` to execute all code quality checks 
 ## Future features
 These are features we may add. We don't have a specific need for them now, but we acknowledge their usefulness and we will add them when we have some down time. Should you or your project require one or more of these future features earlier, please submit a PR or create an issue.
 
-* Add compatibility with more Laravel versions (only supporting 5.5 and 5.6 now)
 * Configurable options for `queue:work`.
 * Testing compatibility with Lumen
 
