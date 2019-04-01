@@ -51,7 +51,7 @@ The queue ensurer works by keeping a cache of process id's (PID's) it has starte
 3. Kill processes that are no longer required and remove their PID's from the cache.
    When the number of configured processes is lower than the number of running processes.
 4. Start new processes and add their PID's to the cache.
-   When the number of congitured processes is higher than the number of running processes.
+   When the number of configured processes is higher than the number of running processes.
 
 This means that the ensurer will not take in account any processes it has not started itself.
 
