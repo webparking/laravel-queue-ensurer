@@ -9,12 +9,33 @@ class ProcessManager
         return posix_kill($processId, 0);
     }
 
-    public function startProcess(string $queueName): int
-    {
+    public function startProcess(
+        string $queueName,
+        ?string $connection,
+        bool $specifyQueue,
+        int $timeout,
+        int $sleep,
+        int $tries
+    ): int {
+        $command = 'php artisan queue:work';
+
+        if (null !== $connection) {
+            $command .= ' ' . $connection;
+        }
+
+        if ($specifyQueue) {
+            $command .= ' --queue ' . $queueName;
+        }
+
+        $command .= ' --timeout ' . $timeout;
+        $command .= ' --sleep ' . $sleep;
+        $command .= ' --tries ' . $tries;
+
+        // Suppress output and return PID
+        $command .= ' > /dev/null & echo $!';
+
         return (int) exec(
-            'php artisan queue:work' .
-            ' --queue=' . $queueName .
-            ' --sleep=10 --tries=5 --timeout=0 > /dev/null & echo $!'
+            $command
         );
     }
 

@@ -30,16 +30,7 @@ By default, the `queue:ensure-processes` command is configured to run once a min
 ## Configuration
 You can publish the configuration file to your project by running `php artisan vendor:publish --provider="Webparking\QueueEnsurer\ServiceProvider" --tag="config"`.
 
-```php
-return [
-    // Configure the number of processes you desire to run per queue
-    'queues' => [
-        'default' => 1,
-    ],
-    // Should we schedule the ensurer command to run every minute?
-    'schedule' => true,
-];
-```
+The documentation for the configurable options can be found in the config file.
 
 ## Working
 The queue ensurer works by keeping a cache of process id's (PID's) it has started. Every time the ensurer runs, it does this:
@@ -65,7 +56,6 @@ When developing, you can run `composer test` to execute all code quality checks 
 ## Future features
 These are features we may add. We don't have a specific need for them now, but we acknowledge their usefulness and we will add them when we have some down time. Should you or your project require one or more of these future features earlier, please submit a PR or create an issue.
 
-* Configurable options for `queue:work`.
 * Testing compatibility with Lumen
 
 ## Licence and Postcardware
