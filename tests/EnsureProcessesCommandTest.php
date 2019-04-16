@@ -90,6 +90,26 @@ class EnsureProcessesCommandTest extends TestCase
         $this->assertNumberOfProcessesForQueue('default', 1);
     }
 
+    public function testStartsNewProcessesWithArrayConfig(): void
+    {
+        $this->setQueueConfig([
+            'default' => [
+                'amount' => 2,
+                'connection' => 'altcon',
+                'specify-queue' => true,
+                'timeout' => 120,
+                'sleep' => 2,
+                'tries' => 2,
+            ],
+        ]);
+
+        $this->writePidsFile([]);
+
+        $this->artisan('queue:ensure-processes');
+
+        $this->assertNumberOfProcessesForQueue('default', 2);
+    }
+
     public function testLeaveCorrectProcessesAsIs(): void
     {
         $this->setQueueConfig([

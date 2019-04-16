@@ -76,7 +76,7 @@ class EnsureProcesses extends Command
     private function killNoLongerNeededProcesses(): void
     {
         foreach ($this->configReader->getQueueNames() as $queueName) {
-            $configuredAmount = $this->configReader->getConfiguredAmount($queueName);
+            $configuredAmount = $this->configReader->getAmount($queueName);
             $amountOfProcesses = \count($this->contentsManager->getPids($queueName));
 
             if ($configuredAmount < $amountOfProcesses) {
@@ -94,14 +94,21 @@ class EnsureProcesses extends Command
     private function startNeededProcesses(): void
     {
         foreach ($this->configReader->getQueueNames() as $queueName) {
-            $configuredAmount = $this->configReader->getConfiguredAmount($queueName);
+            $configuredAmount = $this->configReader->getAmount($queueName);
             $amountOfProcesses = \count($this->contentsManager->getPids($queueName));
 
             if ($configuredAmount > $amountOfProcesses) {
                 for ($i = 1; $i <= ($configuredAmount - $amountOfProcesses); ++$i) {
                     $this->contentsManager->addPid(
                         $queueName,
-                        $this->processManager->startProcess($queueName)
+                        $this->processManager->startProcess(
+                            $queueName,
+                            $this->configReader->getConnection($queueName),
+                            $this->configReader->specifyQueue($queueName),
+                            $this->configReader->getTimeout($queueName),
+                            $this->configReader->getSleep($queueName),
+                            $this->configReader->getTries($queueName)
+                        )
                     );
                 }
             }
