@@ -13,11 +13,11 @@ return [
     // alternatively, define a more in depth configuration.
     'queues' => [
         'default' => 1,
-        'another' => [
-            'amount' => 1, // The number of processes you want to run.
-            'connection' => 'second-connection', // Optional: the connection you'd like to use.
-            // Override any of the default options here.
-        ],
+        // 'another' => [
+        //     'amount' => 1, // The number of processes you want to run.
+        //     'connection' => 'second-connection', // Optional: the connection you'd like to use.
+        //     // Override any of the default queue:workerk options here.
+        // ],
     ],
 
     // Should we schedule the ensurer command to run every minute?
