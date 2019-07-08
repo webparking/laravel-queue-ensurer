@@ -18,7 +18,7 @@ This package provides a command (`queue:ensure-processes`) to allow running the 
 
 Multiple queues can be configured and the number of desired processes can be configured per queue (which makes it possible to run multiple jobs in parallel). Doing so, allows having the queue configuration in your project's codebase.
 
-This package is doesn't care about which queue driver(s) you use and `queue:restart` still works as normal.
+This package doesn't care about which queue driver(s) you use and `queue:restart` still works as normal.
 
 ## Installation
 ```
