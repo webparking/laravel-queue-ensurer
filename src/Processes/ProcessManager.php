@@ -17,7 +17,7 @@ class ProcessManager
         int $sleep,
         int $tries
     ): int {
-        $command = 'php artisan queue:work';
+        $command = PHP_BINARY . ' artisan queue:work';
 
         if (null !== $connection) {
             $command .= ' ' . $connection;
