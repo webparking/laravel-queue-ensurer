@@ -22,4 +22,7 @@ return [
 
     // Should we schedule the ensurer command to run every minute?
     'schedule' => true,
+
+    // The default php executable is called, if you have multiple PHP versions or intalled PHP on different location you can insert the full path top it here
+    //'php-path' => '/usr/local/php73/bin/php73',
 ];

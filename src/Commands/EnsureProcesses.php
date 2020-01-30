@@ -102,6 +102,7 @@ class EnsureProcesses extends Command
                     $this->contentsManager->addPid(
                         $queueName,
                         $this->processManager->startProcess(
+                            $this->configReader->getPhpPath(),
                             $queueName,
                             $this->configReader->getConnection($queueName),
                             $this->configReader->specifyQueue($queueName),
