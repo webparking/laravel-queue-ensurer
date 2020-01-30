@@ -20,6 +20,11 @@ class ConfigReader
         return $queueConfig;
     }
 
+    public function getPhpPath(): string
+    {
+        return config('queue-ensurer.php-path', 'php');
+    }
+
     public function getConnection(string $queueName): ?string
     {
         $queueConfig = $this->getQueueConfig($queueName);

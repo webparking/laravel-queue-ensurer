@@ -10,6 +10,7 @@ class ProcessManager
     }
 
     public function startProcess(
+        string $phpPath,
         string $queueName,
         ?string $connection,
         bool $specifyQueue,
@@ -17,7 +18,8 @@ class ProcessManager
         int $sleep,
         int $tries
     ): int {
-        $command = 'php artisan queue:work';
+        $command = $phpPath;
+        $command .= ' artisan queue:work';
 
         if (null !== $connection) {
             $command .= ' ' . $connection;
