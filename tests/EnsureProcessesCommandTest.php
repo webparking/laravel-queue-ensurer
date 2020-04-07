@@ -13,7 +13,7 @@ class EnsureProcessesCommandTest extends TestCase
         ]);
 
         $process = $this->startProcess();
-        $pid = $process->getPid();
+        $pid = (int) $process->getPid();
         $process->stop();
 
         $this->assertNoLongerRunning($process);
@@ -39,7 +39,7 @@ class EnsureProcessesCommandTest extends TestCase
 
         $this->writePidsFile([
             'test-queue' => [
-                $process->getPid(),
+                (int) $process->getPid(),
             ],
         ]);
 
@@ -60,8 +60,8 @@ class EnsureProcessesCommandTest extends TestCase
 
         $this->writePidsFile([
             'default' => [
-                $process1->getPid(),
-                $process2->getPid(),
+                (int) $process1->getPid(),
+                (int) $process2->getPid(),
             ],
         ]);
 
@@ -69,7 +69,7 @@ class EnsureProcessesCommandTest extends TestCase
 
         $this->assertPidsFileEquals([
             'default' => [
-                $process1->getPid(),
+                (int) $process1->getPid(),
             ],
         ]);
         $this->assertStillRunning($process1);
@@ -120,7 +120,7 @@ class EnsureProcessesCommandTest extends TestCase
 
         $this->writePidsFile([
             'default' => [
-                $process->getPid(),
+                (int) $process->getPid(),
             ],
         ]);
 
@@ -128,7 +128,7 @@ class EnsureProcessesCommandTest extends TestCase
 
         $this->assertPidsFileEquals([
             'default' => [
-                $process->getPid(),
+                (int) $process->getPid(),
             ],
         ]);
         $this->assertStillRunning($process);
@@ -148,6 +148,7 @@ class EnsureProcessesCommandTest extends TestCase
         $this->assertNumberOfProcessesForQueue('default', 1);
     }
 
+    /** @param array<string, array<int>> $contents */
     private function writePidsFile(array $contents): void
     {
         file_put_contents(
@@ -156,6 +157,7 @@ class EnsureProcessesCommandTest extends TestCase
         );
     }
 
+    /** @param array<string, array<int>> $contents */
     private function assertPidsFileEquals(array $contents): void
     {
         $this->assertJsonStringEqualsJsonString(
@@ -164,7 +166,7 @@ class EnsureProcessesCommandTest extends TestCase
         );
     }
 
-    private function assertNumberOfProcessesForQueue(string $queueName, int $expected)
+    private function assertNumberOfProcessesForQueue(string $queueName, int $expected): void
     {
         $contents = json_decode(
             (string) file_get_contents(storage_path('app/queue-listener-pids.json')),
@@ -175,6 +177,7 @@ class EnsureProcessesCommandTest extends TestCase
         $this->assertCount($expected, $contents[$queueName]);
     }
 
+    /** @return Process<string> */
     private function startProcess(): Process
     {
         $process = new Process(['sleep', '10']);
@@ -183,6 +186,7 @@ class EnsureProcessesCommandTest extends TestCase
         return $process;
     }
 
+    /** @param Process<string> $process */
     private function assertNoLongerRunning(Process $process): void
     {
         $this->assertFalse(
@@ -190,6 +194,7 @@ class EnsureProcessesCommandTest extends TestCase
         );
     }
 
+    /** @param Process<string> $process */
     private function assertStillRunning(Process $process): void
     {
         $this->assertTrue(
@@ -197,6 +202,7 @@ class EnsureProcessesCommandTest extends TestCase
         );
     }
 
+    /** @param array<string, int|array<string,int|string|bool>> $config */
     private function setQueueConfig(array $config): void
     {
         config()->set('queue-ensurer.queues', $config);
