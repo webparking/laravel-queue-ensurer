@@ -164,7 +164,7 @@ class EnsureProcessesCommandTest extends TestCase
         );
     }
 
-    private function assertNumberOfProcessesForQueue(string $queueName, int $expected)
+    private function assertNumberOfProcessesForQueue(string $queueName, int $expected): void
     {
         $contents = json_decode(
             (string) file_get_contents(storage_path('app/queue-listener-pids.json')),

@@ -24,11 +24,11 @@
     }
   ],
   "require": {
-    "php": ">=7.1.0",
+    "php": "^7.2.5",
     "ext-json": "*",
     "ext-posix": "*",
-    "illuminate/support": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
-    "illuminate/console": "~5.5.0|~5.6.0|~5.7.0|~5.8.0"
+    "illuminate/support": "^7.0",
+    "illuminate/console": "^7.0"
   },
   "autoload": {
     "psr-4": {
@@ -48,7 +48,7 @@
     }
   },
   "scripts": {
-    "phpstan": "@php vendor/bin/phpstan analyse config src tests -l max --no-progress --ansi",
+    "phpstan": "@php vendor/bin/phpstan analyse --no-progress --ansi",
     "php-cs-fixer": "vendor/bin/php-cs-fixer fix . --config=.php_cs",
     "phpmd": "vendor/bin/phpmd config,src,tests text cleancode,codesize,controversial,design,naming,unusedcode",
     "phpunit": "vendor/bin/phpunit",
@@ -56,11 +56,11 @@
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^2.12",
-    "phpunit/phpunit": "^6|^7.0",
-    "orchestra/testbench": "~3.5.0|~3.6.0|~3.7.0|~3.8.0",
-    "orchestra/database": "~3.5.0|~3.6.0|~3.7.0|~3.8.0",
+    "phpunit/phpunit": "^8",
+    "orchestra/testbench": "^5.0",
+    "orchestra/database": "^5.0",
     "phpmd/phpmd": "^2.6",
-    "phpstan/phpstan": "^0.11.2"
+    "nunomaduro/larastan": "^0.5"
   },
   "prefer-stable": true
 }
