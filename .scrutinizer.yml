@@ -21,15 +21,15 @@ checks:
 
 build:
   nodes:
-    php71:
+    php72:
       environment:
         php:
-          version: 7.1.12
+          version: 7.2.5
       tests:
         override:
           - php-scrutinizer-run
           -
-            command: vendor/bin/phpunit --coverage-clover=coverage71
+            command: vendor/bin/phpunit --coverage-clover=coverage72
             coverage:
-              file: coverage71
+              file: coverage72
               format: php-clover
