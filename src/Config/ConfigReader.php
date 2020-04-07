@@ -4,9 +4,13 @@ namespace Webparking\QueueEnsurer\Config;
 
 class ConfigReader
 {
+    /** @return array<string> */
     public function getQueueNames(): array
     {
-        return array_keys(config('queue-ensurer.queues'));
+        /** @var array<string> $res */
+        $res = array_keys(config('queue-ensurer.queues'));
+
+        return $res;
     }
 
     public function getAmount(string $queueName): int
@@ -14,7 +18,7 @@ class ConfigReader
         $queueConfig = $this->getQueueConfig($queueName);
 
         if (\is_array($queueConfig)) {
-            return $queueConfig['amount'];
+            return (int) $queueConfig['amount'];
         }
 
         return $queueConfig;
@@ -30,7 +34,7 @@ class ConfigReader
         $queueConfig = $this->getQueueConfig($queueName);
 
         if (\is_array($queueConfig) && \array_key_exists('connection', $queueConfig)) {
-            return $queueConfig['connection'];
+            return (string) $queueConfig['connection'];
         }
 
         return null;
@@ -41,7 +45,7 @@ class ConfigReader
         $queueConfig = $this->getQueueConfig($queueName);
 
         if (\is_array($queueConfig) && \array_key_exists('specify-queue', $queueConfig)) {
-            return $queueConfig['specify-queue'];
+            return (bool) $queueConfig['specify-queue'];
         }
 
         return config('queue-ensurer.defaults.specify-queue');
@@ -52,7 +56,7 @@ class ConfigReader
         $queueConfig = $this->getQueueConfig($queueName);
 
         if (\is_array($queueConfig) && \array_key_exists('timeout', $queueConfig)) {
-            return $queueConfig['timeout'];
+            return (int) $queueConfig['timeout'];
         }
 
         return config('queue-ensurer.defaults.timeout');
@@ -63,7 +67,7 @@ class ConfigReader
         $queueConfig = $this->getQueueConfig($queueName);
 
         if (\is_array($queueConfig) && \array_key_exists('sleep', $queueConfig)) {
-            return $queueConfig['sleep'];
+            return (int) $queueConfig['sleep'];
         }
 
         return config('queue-ensurer.defaults.sleep');
@@ -74,14 +78,14 @@ class ConfigReader
         $queueConfig = $this->getQueueConfig($queueName);
 
         if (\is_array($queueConfig) && \array_key_exists('tries', $queueConfig)) {
-            return $queueConfig['tries'];
+            return (int) $queueConfig['tries'];
         }
 
         return config('queue-ensurer.defaults.tries');
     }
 
     /**
-     * @return array|int
+     * @return array<string,int|string>|int
      */
     private function getQueueConfig(string $queueName)
     {

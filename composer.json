@@ -60,7 +60,7 @@
     "orchestra/testbench": "~3.5.0|~3.6.0|~3.7.0|~3.8.0",
     "orchestra/database": "~3.5.0|~3.6.0|~3.7.0|~3.8.0",
     "phpmd/phpmd": "^2.6",
-    "phpstan/phpstan": "^0.11.2"
+    "phpstan/phpstan": "^0.12.18"
   },
   "prefer-stable": true
 }

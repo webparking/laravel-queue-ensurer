@@ -14,9 +14,7 @@ class ContentsManager
         return array_keys($this->getFileContents());
     }
 
-    /**
-     * @return int[]
-     */
+    /** @return int[] */
     public function getPids(string $queueName): array
     {
         $fileContents = $this->getFileContents();
@@ -55,6 +53,7 @@ class ContentsManager
         $this->writeFile($fileContents);
     }
 
+    /** @param array<int> $contents */
     private function updateFileForQueue(string $queueName, array $contents): void
     {
         $fileContents = $this->getFileContents();
@@ -64,6 +63,7 @@ class ContentsManager
         $this->writeFile($fileContents);
     }
 
+    /** @return array<string, array<int>> */
     private function getFileContents(): array
     {
         if (!file_exists($this->getPidsFilePath())) {
@@ -76,6 +76,7 @@ class ContentsManager
         );
     }
 
+    /** @param array<string, array<int>> $contents */
     private function writeFile(array $contents): void
     {
         file_put_contents(
