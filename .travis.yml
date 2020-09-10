@@ -26,7 +26,9 @@ matrix:
     - php: 7.2
       env: LARAVEL='5.8.*' TESTBENCH='3.8.*'
     - php: 7.2
-      env: LARAVEL='7.*' TESTBENCH='5.*'
+      env: LARAVEL='^6' TESTBENCH='^4'
+    - php: 7.2
+      env: LARAVEL='^7' TESTBENCH='^5'
     - php: 7.3
       env: LARAVEL='5.5.*' TESTBENCH='3.5.*'
     - php: 7.3
@@ -36,16 +38,32 @@ matrix:
     - php: 7.3
       env: LARAVEL='5.8.*' TESTBENCH='3.8.*'
     - php: 7.3
-      env: LARAVEL='7.*' TESTBENCH='5.*'
+      env: LARAVEL='^6' TESTBENCH='^4'
+    - php: 7.3
+      env: LARAVEL='^7' TESTBENCH='^5'
+    - php: 7.3
+      env: LARAVEL='^8' TESTBENCH='^6'
     - php: 7.4
-      env: LARAVEL='7.*' TESTBENCH='5.*'
+      env: LARAVEL='5.5.*' TESTBENCH='3.5.*'
+    - php: 7.4
+      env: LARAVEL='5.6.*' TESTBENCH='3.6.*'
+    - php: 7.4
+      env: LARAVEL='5.7.*' TESTBENCH='3.7.*'
+    - php: 7.4
+      env: LARAVEL='5.8.*' TESTBENCH='3.8.*'
+    - php: 7.4
+      env: LARAVEL='^6' TESTBENCH='^4'
+    - php: 7.4
+      env: LARAVEL='^7' TESTBENCH='^5'
+    - php: 7.4
+      env: LARAVEL='^8' TESTBENCH='^6'
 
 before_install:
   - travis_retry composer self-update
   - COMPOSER_MEMORY_LIMIT=-1 travis_retry composer require --no-update --no-interaction "illuminate/support:${LARAVEL}" "illuminate/console:${LARAVEL}" "orchestra/testbench:${TESTBENCH}"
 
 install:
-  - COMPOSER_MEMORY_LIMIT=-1 travis_retry composer update --no-interaction --no-plugins --no-suggest --prefer-source ${COMPOSER_FLAGS}
+  - COMPOSER_MEMORY_LIMIT=-1 travis_retry composer install --no-interaction
 
 script:
   - composer test
