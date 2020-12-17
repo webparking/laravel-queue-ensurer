@@ -70,10 +70,16 @@ class ContentsManager
             return [];
         }
 
-        return json_decode(
+        $fileContents = json_decode(
             (string) file_get_contents($this->getPidsFilePath()),
             true
         );
+
+        if (!\is_array($fileContents)) {
+            return [];
+        }
+
+        return $fileContents;
     }
 
     /** @param array<string, array<int>> $contents */
