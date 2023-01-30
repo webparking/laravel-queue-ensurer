@@ -3,8 +3,8 @@
 </h1>
 
 <p align="center">
-    <a href="https://travis-ci.org/webparking/laravel-queue-ensurer">
-        <img src="https://travis-ci.org/webparking/laravel-queue-ensurer.svg?branch=master" alt="Build Status">
+    <a href="https://github.com/webparking/laravel-queue-ensurer/actions/workflows/run-tests.yml">
+        <img src="https://github.com/webparking/laravel-queue-ensurer/actions/workflows/run-tests.yml/badge.svg" alt="Build Status">
     </a>
     <a href="https://scrutinizer-ci.com/g/webparking/laravel-queue-ensurer/?branch=master">
         <img src="https://scrutinizer-ci.com/g/webparking/laravel-queue-ensurer/badges/quality-score.png?b=master" alt="Quality score">
